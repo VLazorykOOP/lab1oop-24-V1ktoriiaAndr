@@ -38,46 +38,48 @@ void Code1() {
 
 // Другий код
 void Code2() {
-    cout << "Виконання другого коду\n";
     int N, M = 0, T;
-    cout << "Enter number of elements: ";
-    cin >> N;
+    std::cout << "Enter number of elements: ";
+    std::cin >> N;
 
     int A[100], B[100];
 
-    cout << "Enter number T: ";
-    cin >> T;
+    std::cout << "Enter number T: " << "\n";
+    std::cin >> T;
 
-    cout << "Enter elements: \n";
+    std::cout << "Enter elements: \n";
     for (int i = 0; i < N; i++) {
-        cin >> A[i];
+        std::cin >> *(A + i);  
     }
 
     int maxNum = -1, lastIndex = -1;
+    int* pA = A;  
+    int* pB = B;  
+
     for (int i = 0; i < N; i++) {
-        if (A[i] >= 0) {
-            B[M] = A[i];
+        if (*(pA + i) >= 0) {
+            *(pB + M) = *(pA + i);  
             M++;
         }
     }
 
     for (int i = M - 1; i >= 0; i--) {
-        if (B[i] > T && B[i] >= maxNum) {
-            maxNum = B[i];
+        if (*(pB + i) > T && *(pB + i) >= maxNum) {
+            maxNum = *(pB + i);
             lastIndex = i;
         }
     }
 
-    cout << "Array B: ";
+    std::cout << "Array B: ";
     for (int i = 0; i < M; i++) {
-        cout << B[i] << " ";
+        std::cout << *(pB + i) << " ";  
     }
-    cout << "\n";
+    std::cout << "\n";
 
     if (lastIndex != -1) {
-        cout << "Last index of max element greater than T: " << lastIndex << "\n";
+        std::cout << "Last index of max element greater than T: " << lastIndex << "\n";
     } else {
-        cout << "No positive element greater than T found.\n";
+        std::cout << "No positive element greater than T found.\n";
     }
 }
 
