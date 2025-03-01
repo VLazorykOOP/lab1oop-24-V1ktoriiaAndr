@@ -9,12 +9,12 @@ void Code1() {
     int A[100], B[100];  
     int M = 0;  
 
-    std::cout << "Enter number of elements (max " << 100 << "): ";
-    std::cin >> N;
+    cout << "Enter number of elements (max " << 100 << "): ";
+    cin >> N;
 
-    std::cout << "Enter elements:\n";
+    cout << "Enter elements:\n";
     for (int i = 0; i < N; i++) {
-        std::cin >> A[i];
+        cin >> A[i];
     }
 
     for (int i = 0; i < N; i++) {
@@ -24,35 +24,33 @@ void Code1() {
         } 
     }
 
-    if (M == 0){
-        std::cout << "No positive elements in matrix A.";
-        return 0;
+    if (M == 0) {
+        cout << "No positive elements in matrix A.\n";
+        return;
     }
     
-    std::cout << "Array B: ";
+    cout << "Array B: ";
     for (int i = 0; i < M; i++) {
-        std::cout << B[i] << " ";
+        cout << B[i] << " ";
     }
-    std::cout << "\n";
-
-    return 0;
+    cout << "\n";
 }
 
 // Другий код
 void Code2() {
     cout << "Виконання другого коду\n";
     int N, M = 0, T;
-    std::cout << "Enter number of elements: ";
-    std::cin >> N;
+    cout << "Enter number of elements: ";
+    cin >> N;
 
     int A[100], B[100];
 
-    std::cout << "Enter number T: " << "\n";
-    std::cin >> T;
+    cout << "Enter number T: ";
+    cin >> T;
 
-    std::cout << "Enter elements: \n";
+    cout << "Enter elements: \n";
     for (int i = 0; i < N; i++) {
-        std::cin >> A[i];
+        cin >> A[i];
     }
 
     int maxNum = -1, lastIndex = -1;
@@ -63,28 +61,25 @@ void Code2() {
         }
     }
 
-    for (int i = M; i >= 0; i--) {
+    for (int i = M - 1; i >= 0; i--) {
         if (B[i] > T && B[i] >= maxNum) {
             maxNum = B[i];
             lastIndex = i;
         }
     }
 
-    std::cout << "Array B: ";
+    cout << "Array B: ";
     for (int i = 0; i < M; i++) {
-        std::cout << B[i] << " ";
+        cout << B[i] << " ";
     }
-    std::cout << "\n";
-
+    cout << "\n";
 
     if (lastIndex != -1) {
-        std::cout << "Last index of max element greater than T: " << lastIndex << "\n";
+        cout << "Last index of max element greater than T: " << lastIndex << "\n";
     } else {
-        std::cout << "No positive element greater than T found.\n";
+        cout << "No positive element greater than T found.\n";
     }
-
-
-    return 0;
+}
 
 // Третій код
 void Code3() {
@@ -92,28 +87,32 @@ void Code3() {
     int n;
     double a, b, X[200];
 
-    std::cout << "Enter the number of elements:\n";
-    std::cin >> n;
+    cout << "Enter the number of elements:\n";
+    cin >> n;
 
-    std::cout << "Enter the elements of matrix X:\n";
+    cout << "Enter the elements of matrix X:\n";
     for (int i = 0; i < n; i++) {
-        std::cin >> X[i];
+        cin >> X[i];
     }
 
-    std::cout << "Enter the value for a and b(a < b):\n";
-    std::cin >> a >> b;
+    cout << "Enter the value for a and b (a < b):\n";
+    cin >> a >> b;
 
     if (a > b) {
-        std::cout << "Wrong value for a and b!!";
-        return 0;
+        cout << "Wrong value for a and b!!\n";
+        return;
     }
 
-    double Sum = 0, MultiP = 1, max = X[0], min = X[0];
+    double Sum = 0, MultiP = 1;
+    bool hasMultiplication = false;
+    double max = X[0], min = X[0];
+
     for (int i = 0; i < n; i++) {
         if (X[i] < a) {
             Sum += X[i]; 
         } else if (X[i] > b) {
             MultiP *= X[i]; 
+            hasMultiplication = true;
         } else if (X[i] >= a && X[i] <= b) {
             if (X[i] > max) {
                 max = X[i];
@@ -124,12 +123,14 @@ void Code3() {
         }
     }
 
-    std::cout << "Sum of (X(i) < a): " << Sum << "\n";
-    std::cout << "Multiplication of (X(i) > b): " << MultiP << "\n";
-    std::cout << "Max X(i) in [a, b]: " << max << "\n";
-    std::cout << "Min X(i) in [a, b]: " << min << "\n";
-
-    return 0;
+    cout << "Sum of (X(i) < a): " << Sum << "\n";
+    if (hasMultiplication) {
+        cout << "Multiplication of (X(i) > b): " << MultiP << "\n";
+    } else {
+        cout << "No elements found for multiplication (X(i) > b).\n";
+    }
+    cout << "Max X(i) in [a, b]: " << max << "\n";
+    cout << "Min X(i) in [a, b]: " << min << "\n";
 }
 
 // Функція для відображення меню
