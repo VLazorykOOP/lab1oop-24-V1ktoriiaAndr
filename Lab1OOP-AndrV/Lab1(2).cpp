@@ -12,37 +12,38 @@ int main() {
 
     std::cout << "Enter elements: \n";
     for (int i = 0; i < N; i++) {
-        std::cin >> A[i];
+        std::cin >> *(A + i);  
     }
 
     int maxNum = -1, lastIndex = -1;
+    int* pA = A;  
+    int* pB = B;  
+
     for (int i = 0; i < N; i++) {
-        if (A[i] >= 0) {
-            B[M] = A[i];
+        if (*(pA + i) >= 0) {
+            *(pB + M) = *(pA + i);  
             M++;
         }
     }
 
-    for (int i = M; i >= 0; i--) {
-        if (B[i] > T && B[i] >= maxNum) {
-            maxNum = B[i];
+    for (int i = M - 1; i >= 0; i--) {
+        if (*(pB + i) > T && *(pB + i) >= maxNum) {
+            maxNum = *(pB + i);
             lastIndex = i;
         }
     }
 
     std::cout << "Array B: ";
     for (int i = 0; i < M; i++) {
-        std::cout << B[i] << " ";
+        std::cout << *(pB + i) << " ";  
     }
     std::cout << "\n";
-
 
     if (lastIndex != -1) {
         std::cout << "Last index of max element greater than T: " << lastIndex << "\n";
     } else {
         std::cout << "No positive element greater than T found.\n";
     }
-
 
     return 0;
 }

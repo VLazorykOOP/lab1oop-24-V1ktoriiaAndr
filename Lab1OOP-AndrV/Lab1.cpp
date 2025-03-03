@@ -49,32 +49,32 @@ void Code2() {
 
     std::cout << "Enter elements: \n";
     for (int i = 0; i < N; i++) {
-        std::cin >> *(A + i);  
+        std::cin >> A[i];
     }
 
     int maxNum = -1, lastIndex = -1;
-    int* pA = A;  
-    int* pB = B;  
-
     for (int i = 0; i < N; i++) {
-        if (*(pA + i) >= 0) {
-            *(pB + M) = *(pA + i);  
+        if (A[i] > 0) {
+            B[M] = A[i];
             M++;
         }
     }
 
-    for (int i = M - 1; i >= 0; i--) {
-        if (*(pB + i) > T && *(pB + i) >= maxNum) {
-            maxNum = *(pB + i);
+    for (int i = M; i >= 0; i--) {
+        if (B[i] > T && B[i] >= maxNum) {
+            maxNum = B[i];
             lastIndex = i;
         }
     }
 
     std::cout << "Array B: ";
     for (int i = 0; i < M; i++) {
-        std::cout << *(pB + i) << " ";  
+        std::cout << B[i] << " ";
     }
     std::cout << "\n";
+
+    std::cout << "Max Number: " << maxNum << "\n";
+
 
     if (lastIndex != -1) {
         std::cout << "Last index of max element greater than T: " << lastIndex << "\n";
@@ -89,32 +89,28 @@ void Code3() {
     int n;
     double a, b, X[200];
 
-    cout << "Enter the number of elements:\n";
-    cin >> n;
+    std::cout << "Enter the number of elements:\n";
+    std::cin >> n;
 
-    cout << "Enter the elements of matrix X:\n";
+    std::cout << "Enter the elements of matrix X:\n";
     for (int i = 0; i < n; i++) {
-        cin >> X[i];
+        std::cin >> X[i];
     }
 
-    cout << "Enter the value for a and b (a < b):\n";
-    cin >> a >> b;
+    std::cout << "Enter the value for a and b(a < b):\n";
+    std::cin >> a >> b;
 
     if (a > b) {
-        cout << "Wrong value for a and b!!\n";
-        return;
+        std::cout << "Wrong value for a and b!!";
+        return 0;
     }
 
-    double Sum = 0, MultiP = 1;
-    bool hasMultiplication = false;
-    double max = X[0], min = X[0];
-
+    double Sum = 0, MultiP = 1, max = -1e9, min = 1e9;
     for (int i = 0; i < n; i++) {
         if (X[i] < a) {
-            Sum += X[i]; 
+            Sum += X[i];
         } else if (X[i] > b) {
-            MultiP *= X[i]; 
-            hasMultiplication = true;
+            MultiP *= X[i];
         } else if (X[i] >= a && X[i] <= b) {
             if (X[i] > max) {
                 max = X[i];
@@ -125,14 +121,10 @@ void Code3() {
         }
     }
 
-    cout << "Sum of (X(i) < a): " << Sum << "\n";
-    if (hasMultiplication) {
-        cout << "Multiplication of (X(i) > b): " << MultiP << "\n";
-    } else {
-        cout << "No elements found for multiplication (X(i) > b).\n";
-    }
-    cout << "Max X(i) in [a, b]: " << max << "\n";
-    cout << "Min X(i) in [a, b]: " << min << "\n";
+    std::cout << "Sum of (X(i) < a): " << Sum << "\n";
+    std::cout << "Multiplication of (X(i) > b): " << MultiP << "\n";
+    std::cout << "Max X(i) in [a, b]: " << max << "\n";
+    std::cout << "Min X(i) in [a, b]: " << min << "\n";
 }
 
 // Функція для відображення меню
